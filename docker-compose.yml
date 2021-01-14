@@ -1,0 +1,12 @@
+version: '2.3'
+services:
+        nomurapi:
+                build: .
+                user: root
+                command: /bin/bash
+                tty: true
+                stdin_open: true
+                runtime: nvidia
+                volumes:
+                        - /home/nomura/work/kenkyu:/home                 
+
