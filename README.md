@@ -1,0 +1,24 @@
+# kenkyu
+ドナルドトランプのtweetsを用いてbig5性格特性が大きく変化するかどうかを予測するモデルの作成を行う。
+big5性格特性データを得るため、IBMのPersonality Insightsを用いた。
+予測精度がrandomモデルと常に0を予測するモデルに対して、良い精度となった場合、どの単語によってbig5性格特性が影響を受けるか分析を行う。
+分析の際、empathを用いて最頻出単語300に対してカテゴリ化を行い、単語の重要度を用いてどのカテゴリが重要かどうか値を得た
+
+
+#callrandom100.py
+randomforest.pyを100回呼び出し、randomforestモデル、randomモデル、予測値0を常に出力するモデルのaccuracyの平均を出力する
+またEmpathを用いて、カテゴリ毎の重要度を得た
+
+#datasplit.py
+tweetsから得られたbig5データ集合を中央値を閾値として、0と1のbinarydataに変換
+
+#wordcount.py
+全tweetsから単語出現頻度をカウントを行い、最頻出300単語を得る
+
+#randomforest.py
+最頻出300単語をbagofwordsとして入力する
+出力として、accuracyとfeature_importanceを得る
+
+#rnntest.py
+LSTMを用いて、性格の変化予測を行う
+入力にgrabを用いてtweetsをや300次元の埋め込み表現を得る。この埋め込み表現を入力に用いる。
